@@ -45,6 +45,12 @@ describe(relative(__filename), () =>
 				'http://127.0.0.1//',
 			],
 		],
+		[
+			'http://example.org/foo/bar.html',
+			[
+				'http://example.org/foo/bar.html',
+			],
+		],
 	];
 
 	before(function ()
