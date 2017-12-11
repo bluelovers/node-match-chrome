@@ -2,7 +2,7 @@
  * Created by user on 2017/12/11/011.
  */
 
-import localDev, { relative, expect, path, assert } from './_local-dev';
+import localDev, { relative, expect, path, assert, util } from './_local-dev';
 
 import index from '..';
 
@@ -70,12 +70,13 @@ describe(relative(__filename), () =>
 				'http://example.org/foo/bar.html',
 				'file:///bar/baz.html',
 			],
-			[
-				'ftp://example.org/foo/bar.html',
-				'ftp:///bar/baz.html',
-			],
 		],
 	];
+
+	before(function ()
+	{
+		index.defaultOptions.returnValue = true;
+	});
 
 	beforeEach(function ()
 	{
@@ -99,8 +100,10 @@ describe(relative(__filename), () =>
 
 						let r = index(url, test[0]);
 
-						expect(r).to.be.ok;
-						assert.isOk(r);
+						console.log(r);
+
+						//expect(r).to.be.ok;
+						assert.isOk(r.value, util.inspect(r));
 					});
 				});
 			}
@@ -120,8 +123,8 @@ describe(relative(__filename), () =>
 
 						console.log(r);
 
-						expect(r).to.be.not.ok;
-						assert.isNotOk(r);
+						//expect(r).to.be.not.ok;
+						assert.isNotOk(r.value, util.inspect(r));
 					});
 				});
 			}
