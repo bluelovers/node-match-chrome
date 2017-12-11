@@ -30,15 +30,6 @@
     "outDir": ".",
 
     "paths": {
-      "root/src/*": [
-        "./src/*"
-      ],
-      "root/*": [
-        "./*"
-      ],
-      "~/*": [
-        "./*"
-      ]
     },
 
     "traceResolution": true,

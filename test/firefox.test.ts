@@ -11,64 +11,38 @@ describe(relative(__filename), () =>
 {
 	let currentTest;
 
-	// https://developer.chrome.com/apps/match_patterns
+	/**
+	 * https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns
+	 *
+	 * @todo not yet support firefox mode
+	 *
+	 * @type {(string | string[])[][]}
+	 */
 	let tests = [
 		[
-			'http://*/*',
+			'*://*.mozilla.org/*',
 			[
-				'http://www.google.com/',
-				'http://example.org/foo/bar.html',
-			],
-		],
-		[
-			'http://*/foo*',
-			[
-				'http://example.com/foo/bar.html',
-				'http://www.google.com/foo',
-			],
-		],
-		[
-			'https://*.google.com/foo*bar',
-			[
-				'https://www.google.com/foo/baz/bar',
-				'https://docs.google.com/foobar',
-			],
-		],
-		[
-			'http://example.org/foo/bar.html',
-			[
-				'http://example.org/foo/bar.html',
-			],
-		],
-		[
-			'file:///foo*',
-			[
-				'file:///foo/bar.html',
-				'file:///foo',
-			],
-		],
-		[
-			'http://127.0.0.1/*',
-			[
-				'http://127.0.0.1/',
-				'http://127.0.0.1/foo/bar.html',
-			],
-		],
-		[
-			'*://mail.google.com/*',
-			[
-				'http://mail.google.com/foo/baz/bar',
-				'https://mail.google.com/foobar',
+				'http://mozilla.org/',
+				'https://mozilla.org/',
+				'http://a.mozilla.org/',
+				'http://a.b.mozilla.org/',
+				'https://b.mozilla.org/path/',
 			],
 			[
-				'*://mail.google.com/*',
-			],
+				'ftp://mozilla.org/',
+				'http://mozilla.com/',
+				'http://firefox.org/',
+			]
 		],
 		[
 			'<all_urls>',
 			[
-				'http://example.org/foo/bar.html',
-				'file:///bar/baz.html',
+				'http://example.org/',
+				'ftp://files.somewhere.org/',
+				'https://a.org/some/path/',
+			],
+			[
+				'resource://a/b/c/',
 			],
 		],
 	];
